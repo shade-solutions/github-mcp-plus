@@ -8,13 +8,10 @@ import {
   McpError
 } from "@modelcontextprotocol/sdk/types.js";
 import { Octokit } from "octokit";
-import * as dotenv from "dotenv";
 import { registerRepositoryTools, handleRepositoryTools } from "./tools/repository.js";
 import { registerIssueTools, handleIssueTools } from "./tools/issues.js";
 import { registerActionTools, handleActionTools } from "./tools/actions.js";
 import { registerExtraTools, handleExtraTools } from "./tools/extra.js";
-
-dotenv.config();
 
 const GITHUB_PERSONAL_ACCESS_TOKEN = process.env.GITHUB_PERSONAL_ACCESS_TOKEN;
 

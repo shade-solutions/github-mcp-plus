@@ -1,7 +1,10 @@
 import { spawn } from "child_process";
+import * as dotenv from "dotenv";
+
+dotenv.config();
 
 const server = spawn("npx", ["-y", "github-mcp-plus"], {
-  env: { ...process.env, GITHUB_PERSONAL_ACCESS_TOKEN: "gh_abCdEfGhIjKlMnOpQrStUvWxYz" },
+  env: { ...process.env, GITHUB_PERSONAL_ACCESS_TOKEN: process.env.GITHUB_PERSONAL_ACCESS_TOKEN },
   stdio: ["pipe", "pipe", "pipe"]
 });
 
