@@ -1,11 +1,11 @@
 {
-  "name": "github-mcp",
+  "name": "github-mcp-plus",
   "version": "1.0.1",
   "description": "https://github.com/shade-solutions/github-mcp-plus",
   "type": "module",
   "main": "build/index.js",
   "bin": {
-    "github-mcp": "./build/index.js"
+    "github-mcp-plus": "./build/index.js"
   },
   "scripts": {
     "build": "tsc",
