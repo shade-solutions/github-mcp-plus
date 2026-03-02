@@ -1,0 +1,35 @@
+{
+  "name": "github-mcp",
+  "version": "1.0.0",
+  "description": "https://github.com/shade-solutions/github-mcp-plus",
+  "type": "module",
+  "main": "build/index.js",
+  "bin": {
+    "github-mcp": "./build/index.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shade-solutions/github-mcp-plus.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/shade-solutions/github-mcp-plus/issues"
+  },
+  "homepage": "https://github.com/shade-solutions/github-mcp-plus#readme",
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.6.0",
+    "dotenv": "^16.4.7",
+    "octokit": "^4.1.2",
+    "zod": "^3.24.2"
+  },
+  "devDependencies": {
+    "@types/node": "^22.13.9",
+    "typescript": "^5.8.2"
+  }
+}
