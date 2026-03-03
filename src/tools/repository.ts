@@ -250,6 +250,31 @@ export function registerRepositoryTools() {
         },
         required: []
       }
+    },
+    {
+      name: "get_repository",
+      description: "Get detailed information about a specific repository (including parent if it's a fork)",
+      inputSchema: {
+        type: "object",
+        properties: {
+          owner: { type: "string" },
+          repo: { type: "string" }
+        },
+        required: ["owner", "repo"]
+      }
+    },
+    {
+      name: "sync_fork",
+      description: "Sync a fork with its upstream repository (merge default branch of upstream into current fork)",
+      inputSchema: {
+        type: "object",
+        properties: {
+          owner: { type: "string", description: "The owner of the fork" },
+          repo: { type: "string", description: "The name of the fork" },
+          branch: { type: "string", description: "The name of the branch to sync (usually the default branch)" }
+        },
+        required: ["owner", "repo", "branch"]
+      }
     }
   ];
 }
@@ -373,6 +398,18 @@ export async function handleRepositoryTools(name: string, params: any, octokit: 
       const { data } = await octokit.rest.activity.listReposStarredByAuthenticatedUser({ per_page, page });
       return { content: [{ type: "text", text: JSON.stringify(data, null, 2) }] };
     }
+  }
+
+  if (name === "get_repository") {
+    const { owner, repo } = params;
+    const { data } = await octokit.rest.repos.get({ owner, repo });
+    return { content: [{ type: "text", text: JSON.stringify(data, null, 2) }] };
+  }
+
+  if (name === "sync_fork") {
+    const { owner, repo, branch } = params;
+    const { data } = await octokit.rest.repos.mergeUpstream({ owner, repo, branch });
+    return { content: [{ type: "text", text: JSON.stringify(data, null, 2) }] };
   }
 
   return null;

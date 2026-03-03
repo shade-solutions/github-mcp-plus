@@ -28,6 +28,19 @@ export function registerActionTools() {
         },
         required: ["owner", "repo", "workflow_id", "ref"]
       }
+    },
+    {
+      name: "list_check_runs_for_ref",
+      description: "List check runs for a specific reference (branch, SHA, or tag) to see CI/CD status",
+      inputSchema: {
+        type: "object",
+        properties: {
+          owner: { type: "string" },
+          repo: { type: "string" },
+          ref: { type: "string", description: "The reference to check (SHA, branch, or tag)" }
+        },
+        required: ["owner", "repo", "ref"]
+      }
     }
   ];
 }
@@ -52,6 +65,16 @@ export async function handleActionTools(name: string, params: any, octokit: Octo
       inputs
     });
     return { content: [{ type: "text", text: `Successfully triggered workflow. API returned empty response: ${JSON.stringify(data)}` }] };
+  }
+
+  if (name === "list_check_runs_for_ref") {
+    const { owner, repo, ref } = params;
+    const { data } = await octokit.rest.checks.listForRef({
+      owner,
+      repo,
+      ref
+    });
+    return { content: [{ type: "text", text: JSON.stringify(data.check_runs, null, 2) }] };
   }
 
   return null;

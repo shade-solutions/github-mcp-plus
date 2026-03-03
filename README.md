@@ -5,59 +5,63 @@
 
 An enhanced, **open-source developer friendly**, Node.js-based implementation of the official **GitHub Model Context Protocol (MCP)** Server.
 
-Unlike the official GitHub MCP server which requires a heavy Docker setup, this version runs purely on Node.js and can be easily executed using `npx`. It includes **46 tools** covering every major GitHub workflow — from PR reviews to gist creation — making it the most comprehensive GitHub MCP server available.
+Unlike the official GitHub MCP server which requires a heavy Docker setup, this version runs purely on Node.js and can be easily executed using `npx`. It includes **50 elite tools** covering every major GitHub workflow — from PR reviews to CI status checking — making it the most comprehensive GitHub MCP server available.
 
-> **Built for open-source contributors.** Fork repos, review PRs, comment on issues, manage labels, search code, star projects — all from your AI assistant.
+> **Ultimate Tool for GSoC & Open-Source Contributors.** Fork repos, sync with upstream, check CI status, review PRs, comment on issues, manage labels, search code, and star projects — all via your AI assistant.
 
 ---
 
 ## ✨ Why github-mcp-plus?
 
-| Feature              | Official (Docker)      | **github-mcp-plus**       |
-| -------------------- | ---------------------- | ------------------------- |
-| Setup                | Docker required        | `npx` — zero install      |
-| Runtime              | Go binary in container | Native Node.js            |
-| Tools                | ~40                    | **46+**                   |
-| PR Review Comments   | ❌                     | ✅                        |
-| Submit PR Reviews    | ❌                     | ✅                        |
-| PR Diffs             | ❌                     | ✅                        |
-| Commit Diffs         | ❌                     | ✅                        |
-| Fork Repos           | ❌                     | ✅                        |
-| Star/Unstar          | ❌                     | ✅                        |
-| Gist Management      | ❌                     | ✅                        |
-| Open Source Friendly | —                      | ✅ Built for contributors |
+| Feature              | Official (Docker)      | **github-mcp-plus**  |
+| -------------------- | ---------------------- | -------------------- |
+| Setup                | Docker required        | `npx` — zero install |
+| Runtime              | Go binary in container | Native Node.js       |
+| Tool Count           | ~40                    | **50 (Elite)**       |
+| CI Status (Checks)   | ❌                     | ✅                   |
+| Fork Synchronization | ❌                     | ✅                   |
+| PR Review Comments   | ❌                     | ✅                   |
+| Submit PR Reviews    | ❌                     | ✅                   |
+| PR Diffs             | ❌                     | ✅                   |
+| Commit Diffs         | ❌                     | ✅                   |
+| Fork Repos           | ❌                     | ✅                   |
+| Star/Unstar          | ❌                     | ✅                   |
+| Gist Management      | ❌                     | ✅                   |
 
 ---
 
-## 🛠️ All 46 Tools
+## 🛠️ The "Big 50" Toolset
 
-### 📂 Repository Management (18 tools)
+### 📂 Repository Management (20 tools)
 
-| Tool                        | Description                    |
-| --------------------------- | ------------------------------ |
-| `get_file_contents`         | Get file or directory contents |
-| `create_or_update_file`     | Create or update a file        |
-| `delete_file`               | Delete a file from a repo      |
-| `search_repositories`       | Search for repositories        |
-| `create_repository`         | Create a new repository        |
-| `fork_repository`           | Fork a repo to your account    |
-| `create_branch`             | Create a new branch            |
-| `list_branches`             | List all branches              |
-| `list_commits`              | List commits with filters      |
-| `get_commit`                | Get commit details             |
-| `get_repository_tree`       | Full recursive file tree       |
-| `list_contributors`         | List repo contributors         |
-| `search_code`               | Search code across GitHub      |
-| `search_users`              | Search for GitHub users        |
-| `star_repository`           | Star a repository              |
-| `unstar_repository`         | Unstar a repository            |
-| `list_stargazers`           | List users who starred a repo  |
-| `list_starred_repositories` | List starred repos             |
+| Tool                        | Description                                  |
+| --------------------------- | -------------------------------------------- |
+| `get_repository`            | Get repo details (includes parents of forks) |
+| `sync_fork`                 | Merges upstream changes into your fork       |
+| `get_file_contents`         | Get file or directory contents               |
+| `create_or_update_file`     | Create or update a file                      |
+| `delete_file`               | Delete a file from a repo                    |
+| `search_repositories`       | Search for repositories                      |
+| `create_repository`         | Create a new repository                      |
+| `fork_repository`           | Fork a repo to your account                  |
+| `create_branch`             | Create a new branch                          |
+| `list_branches`             | List all branches                            |
+| `list_commits`              | List commits with filters                    |
+| `get_commit`                | Get commit details                           |
+| `get_repository_tree`       | Full recursive file tree                     |
+| `list_contributors`         | List repo contributors                       |
+| `search_code`               | Search code across GitHub                    |
+| `search_users`              | Search for GitHub users                      |
+| `star_repository`           | Star a repository                            |
+| `unstar_repository`         | Unstar a repository                          |
+| `list_stargazers`           | List users who starred a repo                |
+| `list_starred_repositories` | List starred repos                           |
 
-### 💬 Issues & Pull Requests (17 tools)
+### 💬 Issues & Pull Requests (18 tools)
 
 | Tool                    | Description                                |
 | ----------------------- | ------------------------------------------ |
+| `get_pull_request`      | Get PR details (includes mergeable status) |
 | `create_issue`          | Create a new issue                         |
 | `issue_read`            | Read an issue or PR                        |
 | `update_issue`          | Update issue title/body/state/labels       |
@@ -76,12 +80,13 @@ Unlike the official GitHub MCP server which requires a heavy Docker setup, this 
 | `get_pr_comments`       | List all review comments on a PR           |
 | `submit_pr_review`      | Approve, request changes, or comment on PR |
 
-### ⚙️ GitHub Actions (2 tools)
+### ⚙️ GitHub Actions & CI (3 tools)
 
-| Tool                  | Description                     |
-| --------------------- | ------------------------------- |
-| `actions_list`        | List all workflows in a repo    |
-| `actions_run_trigger` | Trigger a workflow via dispatch |
+| Tool                      | Description                                  |
+| ------------------------- | -------------------------------------------- |
+| `list_check_runs_for_ref` | **Check CI/CD status** for any branch/SHA/PR |
+| `actions_list`            | List all workflows in a repo                 |
+| `actions_run_trigger`     | Trigger a workflow via dispatch              |
 
 ### 🔥 Extra Tools (8 tools)
 
@@ -106,103 +111,15 @@ Unlike the official GitHub MCP server which requires a heavy Docker setup, this 
 
 ## 🔌 Installation Guides
 
-This server requires a GitHub Personal Access Token (`GITHUB_PERSONAL_ACCESS_TOKEN`).
-
-> **Note**: Standard `repo` scope is usually sufficient, though `workflow` scope is needed for triggering Actions.
-
-### 🖥️ Claude Desktop
-
-Add the following to your `claude_desktop_config.json`:
-
-- **Mac**: `~/Library/Application Support/Claude/claude_desktop_config.json`
-- **Windows**: `%APPDATA%\Claude\claude_desktop_config.json`
-
-```json
-{
-  "mcpServers": {
-    "github": {
-      "command": "npx",
-      "args": ["-y", "github-mcp-plus"],
-      "env": {
-        "GITHUB_PERSONAL_ACCESS_TOKEN": "your-github-token"
-      }
-    }
-  }
-}
-```
-
-### 💻 Cursor
-
-1. Open Cursor Settings → **Features** → **MCP**.
-2. Add a new server:
-   - **Type**: `command`
-   - **Name**: `github`
-   - **Command**: `npx -y github-mcp-plus`
-3. Set `GITHUB_PERSONAL_ACCESS_TOKEN` in your environment.
-
-Or create `.cursor/mcp.json`:
-
-```json
-{
-  "mcpServers": {
-    "github": {
-      "command": "npx",
-      "args": ["-y", "github-mcp-plus"],
-      "env": {
-        "GITHUB_PERSONAL_ACCESS_TOKEN": "your-github-token"
-      }
-    }
-  }
-}
-```
-
-### 🏄‍♂️ Windsurf
-
-Configure in `windsurf.config.json` or through the UI:
-
-```json
-{
-  "mcp": {
-    "servers": [
-      {
-        "name": "github",
-        "command": "npx -y github-mcp-plus",
-        "env": {
-          "GITHUB_PERSONAL_ACCESS_TOKEN": "your-github-token"
-        }
-      }
-    ]
-  }
-}
-```
-
-### 🧑‍🚀 Antigravity
-
-Add to your `mcp_config.json`:
-
-```json
-{
-  "mcpServers": {
-    "github": {
-      "command": "npx",
-      "args": ["-y", "-q", "github-mcp-plus@latest"],
-      "env": {
-        "GITHUB_PERSONAL_ACCESS_TOKEN": "your-github-token"
-      }
-    }
-  }
-}
-```
-
-### 🔧 Any MCP Client / CLI
+Simply configure your MCP client to use `npx`:
 
 ```bash
-GITHUB_PERSONAL_ACCESS_TOKEN="your-github-token" npx -y github-mcp-plus
+GITHUB_PERSONAL_ACCESS_TOKEN="your-github-token" npx -y github-mcp-plus@latest
 ```
 
 ---
 
-## 🤝 Contributing
+## 👨‍💻 Contributing
 
 This project is built for the open-source community! Contributions are welcome:
 
@@ -211,18 +128,6 @@ This project is built for the open-source community! Contributions are welcome:
 3. Commit your changes (`git commit -m 'Add amazing tool'`)
 4. Push to the branch (`git push origin feature/amazing-tool`)
 5. Open a Pull Request
-
----
-
-## 👨‍💻 Local Development
-
-```bash
-git clone https://github.com/shade-solutions/github-mcp-plus.git
-cd github-mcp-plus
-npm install
-npm run build
-GITHUB_PERSONAL_ACCESS_TOKEN="your-token" node build/index.js
-```
 
 ---
 

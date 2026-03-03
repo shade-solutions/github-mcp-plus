@@ -346,6 +346,20 @@ export function registerIssueTools() {
         required: ["owner", "repo", "pull_number", "event"],
       },
     },
+    {
+      name: "get_pull_request",
+      description:
+        "Get detailed information about a specific pull request (includes status like mergeable)",
+      inputSchema: {
+        type: "object",
+        properties: {
+          owner: { type: "string" },
+          repo: { type: "string" },
+          pull_number: { type: "number" },
+        },
+        required: ["owner", "repo", "pull_number"],
+      },
+    },
   ];
 }
 
@@ -584,6 +598,16 @@ export async function handleIssueTools(
       pull_number,
       body,
       event,
+    });
+    return { content: [{ type: "text", text: JSON.stringify(data, null, 2) }] };
+  }
+
+  if (name === "get_pull_request") {
+    const { owner, repo, pull_number } = params;
+    const { data } = await octokit.rest.pulls.get({
+      owner,
+      repo,
+      pull_number,
     });
     return { content: [{ type: "text", text: JSON.stringify(data, null, 2) }] };
   }
