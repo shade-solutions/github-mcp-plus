@@ -3,61 +3,114 @@
 [![npm version](https://badge.fury.io/js/github-mcp-plus.svg)](https://badge.fury.io/js/github-mcp-plus)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-An enhanced, Node.js-based implementation of the official **GitHub Model Context Protocol (MCP)** Server.
+An enhanced, **open-source developer friendly**, Node.js-based implementation of the official **GitHub Model Context Protocol (MCP)** Server.
 
-Unlike the official GitHub MCP server which requires a heavy Docker setup, this version runs purely on Node.js and can be easily executed using `npx`. It includes a wide range of official tools as well as **"extra tools"** that provide even deeper context for AI agents (e.g., fetching PR diffs directly).
+Unlike the official GitHub MCP server which requires a heavy Docker setup, this version runs purely on Node.js and can be easily executed using `npx`. It includes **46 tools** covering every major GitHub workflow — from PR reviews to gist creation — making it the most comprehensive GitHub MCP server available.
 
-This allows Claude, Cursor, Windsurf, Windsurf, Antigravity, and other MCP clients to instantly search repositories, read issues, trigger actions, and analyze PR diffs without touching a terminal.
-
----
-
-## ✨ Features
-
-- **No Docker Required**: Just `npx github-mcp-plus`
-- **100% Native Node.js**: Fast, lightweight, and easy to deploy.
-- **Enhanced Toolset**: Includes all official capabilities + deep programmatic tools like extracting source `.diff`s.
+> **Built for open-source contributors.** Fork repos, review PRs, comment on issues, manage labels, search code, star projects — all from your AI assistant.
 
 ---
 
-## 🛠️ Tools Provided
+## ✨ Why github-mcp-plus?
 
-### 1. 📂 Repository
-
-- `get_file_contents` - Get the contents of a file or directory.
-- `create_or_update_file` - Commit changes directly to repositories.
-- `search_repositories` - Search for repositories on GitHub.
-
-### 2. 💬 Issues & Pull Requests
-
-- `create_issue` - Create a new issue.
-- `issue_read` - Read an issue or pull request.
-- `create_pull_request` - Open a new pull request.
-- `merge_pull_request` - Merge an existing pull request.
-
-### 3. ⚙️ GitHub Actions
-
-- `actions_list` - Discover repository workflows.
-- `actions_run_trigger` - Trigger specific workflows via `workflow_dispatch`.
-
-### 4. 🔥 Extra Tools (Exclusive to mcp-plus)
-
-- `get_pr_diff` - Fetch the raw programmatic `.diff` of a pull request.
-- `get_commit_diff` - Fetch the diff of any specific commit.
-- `create_release` - Programmatically draft and publish GitHub releases.
-
-### 5. 🧑‍💻 Utilities
-
-- `get_me` - Get info about the authenticated user.
+| Feature              | Official (Docker)      | **github-mcp-plus**       |
+| -------------------- | ---------------------- | ------------------------- |
+| Setup                | Docker required        | `npx` — zero install      |
+| Runtime              | Go binary in container | Native Node.js            |
+| Tools                | ~40                    | **46+**                   |
+| PR Review Comments   | ❌                     | ✅                        |
+| Submit PR Reviews    | ❌                     | ✅                        |
+| PR Diffs             | ❌                     | ✅                        |
+| Commit Diffs         | ❌                     | ✅                        |
+| Fork Repos           | ❌                     | ✅                        |
+| Star/Unstar          | ❌                     | ✅                        |
+| Gist Management      | ❌                     | ✅                        |
+| Open Source Friendly | —                      | ✅ Built for contributors |
 
 ---
 
-## 🔌 Installation Guides for IDEs & Clients
+## 🛠️ All 46 Tools
+
+### 📂 Repository Management (18 tools)
+
+| Tool                        | Description                    |
+| --------------------------- | ------------------------------ |
+| `get_file_contents`         | Get file or directory contents |
+| `create_or_update_file`     | Create or update a file        |
+| `delete_file`               | Delete a file from a repo      |
+| `search_repositories`       | Search for repositories        |
+| `create_repository`         | Create a new repository        |
+| `fork_repository`           | Fork a repo to your account    |
+| `create_branch`             | Create a new branch            |
+| `list_branches`             | List all branches              |
+| `list_commits`              | List commits with filters      |
+| `get_commit`                | Get commit details             |
+| `get_repository_tree`       | Full recursive file tree       |
+| `list_contributors`         | List repo contributors         |
+| `search_code`               | Search code across GitHub      |
+| `search_users`              | Search for GitHub users        |
+| `star_repository`           | Star a repository              |
+| `unstar_repository`         | Unstar a repository            |
+| `list_stargazers`           | List users who starred a repo  |
+| `list_starred_repositories` | List starred repos             |
+
+### 💬 Issues & Pull Requests (17 tools)
+
+| Tool                    | Description                                |
+| ----------------------- | ------------------------------------------ |
+| `create_issue`          | Create a new issue                         |
+| `issue_read`            | Read an issue or PR                        |
+| `update_issue`          | Update issue title/body/state/labels       |
+| `list_issues`           | List issues with filters                   |
+| `search_issues`         | Search issues across GitHub                |
+| `add_issue_comment`     | Comment on an issue or PR                  |
+| `list_issue_comments`   | List comments on an issue                  |
+| `add_label`             | Add labels to an issue/PR                  |
+| `remove_label`          | Remove a label                             |
+| `create_pull_request`   | Open a new PR                              |
+| `update_pull_request`   | Update a PR                                |
+| `merge_pull_request`    | Merge a PR                                 |
+| `list_pull_requests`    | List PRs with filters                      |
+| `list_pr_files`         | List files changed in a PR                 |
+| `add_pr_review_comment` | Add inline review comment on PR            |
+| `get_pr_comments`       | List all review comments on a PR           |
+| `submit_pr_review`      | Approve, request changes, or comment on PR |
+
+### ⚙️ GitHub Actions (2 tools)
+
+| Tool                  | Description                     |
+| --------------------- | ------------------------------- |
+| `actions_list`        | List all workflows in a repo    |
+| `actions_run_trigger` | Trigger a workflow via dispatch |
+
+### 🔥 Extra Tools (8 tools)
+
+| Tool                 | Description                     |
+| -------------------- | ------------------------------- |
+| `get_pr_diff`        | Get the raw `.diff` of a PR     |
+| `get_commit_diff`    | Get the raw `.diff` of a commit |
+| `create_release`     | Create a GitHub release         |
+| `list_releases`      | List releases for a repo        |
+| `get_latest_release` | Get the latest release          |
+| `list_tags`          | List tags in a repo             |
+| `create_gist`        | Create a new gist               |
+| `list_gists`         | List your gists                 |
+
+### 🧑‍💻 Utilities (1 tool)
+
+| Tool     | Description                 |
+| -------- | --------------------------- |
+| `get_me` | Get authenticated user info |
+
+---
+
+## 🔌 Installation Guides
 
 This server requires a GitHub Personal Access Token (`GITHUB_PERSONAL_ACCESS_TOKEN`).
 
 > **Note**: Standard `repo` scope is usually sufficient, though `workflow` scope is needed for triggering Actions.
 
-### 🖥️ Clause Desktop App
+### 🖥️ Claude Desktop
 
 Add the following to your `claude_desktop_config.json`:
 
@@ -80,19 +133,32 @@ Add the following to your `claude_desktop_config.json`:
 
 ### 💻 Cursor
 
-Cursor allows you to configure MCP servers directly within the UI or via `.cursor/mcp.json`:
-
-1. Open Cursor Settings.
-2. Navigate to **Features** -> **MCP**.
-3. Add a new server:
+1. Open Cursor Settings → **Features** → **MCP**.
+2. Add a new server:
    - **Type**: `command`
    - **Name**: `github`
    - **Command**: `npx -y github-mcp-plus`
-4. Make sure your environment has `GITHUB_PERSONAL_ACCESS_TOKEN` exported, or define it in Cursor's environment settings.
+3. Set `GITHUB_PERSONAL_ACCESS_TOKEN` in your environment.
+
+Or create `.cursor/mcp.json`:
+
+```json
+{
+  "mcpServers": {
+    "github": {
+      "command": "npx",
+      "args": ["-y", "github-mcp-plus"],
+      "env": {
+        "GITHUB_PERSONAL_ACCESS_TOKEN": "your-github-token"
+      }
+    }
+  }
+}
+```
 
 ### 🏄‍♂️ Windsurf
 
-For Windsurf, you typically configure MCPs in your project or global `windsurf.config.json` or through the Windsurf UI:
+Configure in `windsurf.config.json` or through the UI:
 
 ```json
 {
@@ -110,9 +176,25 @@ For Windsurf, you typically configure MCPs in your project or global `windsurf.c
 }
 ```
 
-### 🧑‍🚀 Antigravity / General CLI
+### 🧑‍🚀 Antigravity
 
-Since it's highly compatible with the official SDK, any conforming MCP client can run the tool:
+Add to your `mcp_config.json`:
+
+```json
+{
+  "mcpServers": {
+    "github": {
+      "command": "npx",
+      "args": ["-y", "-q", "github-mcp-plus@latest"],
+      "env": {
+        "GITHUB_PERSONAL_ACCESS_TOKEN": "your-github-token"
+      }
+    }
+  }
+}
+```
+
+### 🔧 Any MCP Client / CLI
 
 ```bash
 GITHUB_PERSONAL_ACCESS_TOKEN="your-github-token" npx -y github-mcp-plus
@@ -120,13 +202,30 @@ GITHUB_PERSONAL_ACCESS_TOKEN="your-github-token" npx -y github-mcp-plus
 
 ---
 
+## 🤝 Contributing
+
+This project is built for the open-source community! Contributions are welcome:
+
+1. Fork the repo
+2. Create your feature branch (`git checkout -b feature/amazing-tool`)
+3. Commit your changes (`git commit -m 'Add amazing tool'`)
+4. Push to the branch (`git push origin feature/amazing-tool`)
+5. Open a Pull Request
+
+---
+
 ## 👨‍💻 Local Development
 
-1. Clone the repository.
-2. Run `npm install`
-3. Build the server: `npm run build`
-4. The server can be run manually:
-
 ```bash
-GITHUB_PERSONAL_ACCESS_TOKEN="your-github-token" node build/index.js
+git clone https://github.com/shade-solutions/github-mcp-plus.git
+cd github-mcp-plus
+npm install
+npm run build
+GITHUB_PERSONAL_ACCESS_TOKEN="your-token" node build/index.js
 ```
+
+---
+
+## 📄 License
+
+MIT
