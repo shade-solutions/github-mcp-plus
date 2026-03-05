@@ -1,15 +1,37 @@
 {
   "name": "github-mcp-plus",
   "version": "1.2.0",
-  "description": "https://github.com/shade-solutions/github-mcp-plus",
+  "publisher": "sh20raj",
+  "displayName": "GitHub MCP Plus",
+  "description": "Professional GitHub tools for AI assistants - optimized for GSoC and Open Source",
   "type": "module",
-  "main": "build/index.js",
+  "main": "build/extension.js",
+  "engines": {
+    "vscode": "^1.99.0"
+  },
+  "categories": [
+    "AI",
+    "Programming Languages"
+  ],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
   "bin": {
     "github-mcp-plus": "build/index.js"
   },
   "scripts": {
+    "vscode:prepublish": "npm run build && npm run bundle-extension",
     "build": "tsc",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "bundle-extension": "esbuild src/extension.ts --bundle --outfile=build/extension.js --external:vscode --platform=node --format=cjs",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "package-extension": "vsce package --no-git-tag-version --allow-package-secrets github"
+  },
+  "contributes": {
+    "mcpServerDefinitionProviders": [
+      {
+        "id": "github-mcp-plus-provider"
+      }
+    ]
   },
   "repository": {
     "type": "git",
@@ -29,7 +51,10 @@
   },
   "devDependencies": {
     "@types/node": "^22.13.9",
+    "@types/vscode": "^1.99.0",
+    "@vscode/vsce": "^3.7.1",
     "dotenv": "^17.3.1",
+    "esbuild": "^0.27.3",
     "typescript": "^5.8.2"
   }
 }

@@ -131,6 +131,41 @@ This project is built for the open-source community! Contributions are welcome:
 
 ---
 
+## 🏬 VS Code Marketplace Publishing
+
+This project is now a dual-purpose codebase! It functions as both a standard MCP server and a native VS Code extension.
+
+### 1. Build the Extension
+
+```bash
+npm install
+npm run package-extension
+```
+
+This generates a `github-mcp-plus-1.2.0.vsix` file.
+
+### 2. Manual Test
+
+Install the `.vsix` in VS Code via:
+
+- Command Palette (`Cmd+Shift+P`) → **Extensions: Install from VSIX...**
+- Select the generated file.
+
+### 3. Publish to Marketplace
+
+1. Get a [Personal Access Token (PAT)](https://aka.ms/vscode-publish-pat) from Azure DevOps.
+2. Login to `vsce`:
+   ```bash
+   npx vsce login sh20raj
+   ```
+3. Publish:
+   ```bash
+   npm run package-extension
+   npx vsce publish
+   ```
+
+---
+
 ## 📄 License
 
 MIT
