@@ -168,6 +168,87 @@ Install the `.vsix` in VS Code via:
 
 ---
 
+## 🔌 Installation Guides for IDEs & Clients
+
+This server requires a GitHub Personal Access Token (`GITHUB_PERSONAL_ACCESS_TOKEN`).
+
+> **Note**: Standard `repo` scope is usually sufficient, though `workflow` scope is needed for triggering Actions.
+
+### 🖥️ Clause Desktop App
+
+Add the following to your `claude_desktop_config.json`:
+
+- **Mac**: `~/Library/Application Support/Claude/claude_desktop_config.json`
+- **Windows**: `%APPDATA%\Claude\claude_desktop_config.json`
+
+```json
+{
+  "mcpServers": {
+    "github": {
+      "command": "npx",
+      "args": ["-y", "github-mcp-plus"],
+      "env": {
+        "GITHUB_PERSONAL_ACCESS_TOKEN": "your-github-token"
+      }
+    }
+  }
+}
+```
+
+### 💻 Cursor
+
+Cursor allows you to configure MCP servers directly within the UI or via `.cursor/mcp.json`:
+
+1. Open Cursor Settings.
+2. Navigate to **Features** -> **MCP**.
+3. Add a new server:
+   - **Type**: `command`
+   - **Name**: `github`
+   - **Command**: `npx -y github-mcp-plus`
+4. Make sure your environment has `GITHUB_PERSONAL_ACCESS_TOKEN` exported, or define it in Cursor's environment settings.
+
+### 🏄‍♂️ Windsurf
+
+For Windsurf, you typically configure MCPs in your project or global `windsurf.config.json` or through the Windsurf UI:
+
+```json
+{
+  "mcp": {
+    "servers": [
+      {
+        "name": "github",
+        "command": "npx -y github-mcp-plus",
+        "env": {
+          "GITHUB_PERSONAL_ACCESS_TOKEN": "your-github-token"
+        }
+      }
+    ]
+  }
+}
+```
+
+### 🧑‍🚀 Antigravity / General CLI
+
+Since it's highly compatible with the official SDK, any conforming MCP client can run the tool:
+
+```bash
+GITHUB_PERSONAL_ACCESS_TOKEN="your-github-token" npx -y github-mcp-plus
+```
+
+---
+
+## 👨‍💻 Local Development
+
+1. Clone the repository.
+2. Run `npm install`
+3. Build the server: `npm run build`
+4. The server can be run manually:
+
+```bash
+GITHUB_PERSONAL_ACCESS_TOKEN="your-github-token" node build/index.js
+```
+
+
 ## 📄 License
 
 MIT
