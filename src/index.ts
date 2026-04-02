@@ -12,6 +12,11 @@ import { registerRepositoryTools, handleRepositoryTools } from "./tools/reposito
 import { registerIssueTools, handleIssueTools } from "./tools/issues.js";
 import { registerActionTools, handleActionTools } from "./tools/actions.js";
 import { registerExtraTools, handleExtraTools } from "./tools/extra.js";
+import { registerUserOrgTools, handleUserOrgTools } from "./tools/user_org.js";
+import { registerKeysHooksTools, handleKeysHooksTools } from "./tools/keys_hooks.js";
+import { registerEnterpriseAdminTools, handleEnterpriseAdminTools } from "./tools/enterprise_admin.js";
+import { registerDevOpsTools, handleDevOpsTools } from "./tools/dev_ops.js";
+import { registerMiscTools, handleMiscTools } from "./tools/misc.js";
 
 const GITHUB_PERSONAL_ACCESS_TOKEN = process.env.GITHUB_PERSONAL_ACCESS_TOKEN;
 
@@ -32,18 +37,15 @@ const server = new Server({
 });
 
 const tools = [
-  {
-    name: "get_me",
-    description: "Get the authenticated user",
-    inputSchema: {
-      type: "object",
-      properties: {},
-    }
-  },
   ...registerRepositoryTools(),
   ...registerIssueTools(),
   ...registerActionTools(),
-  ...registerExtraTools()
+  ...registerExtraTools(),
+  ...registerUserOrgTools(),
+  ...registerKeysHooksTools(),
+  ...registerEnterpriseAdminTools(),
+  ...registerDevOpsTools(),
+  ...registerMiscTools()
 ];
 
 // Implement Tool registration
@@ -55,11 +57,6 @@ server.setRequestHandler(ListToolsRequestSchema, async () => {
 server.setRequestHandler(CallToolRequestSchema, async (request) => {
   const { name, arguments: params } = request.params;
   try {
-    if (name === "get_me") {
-      const { data } = await octokit.rest.users.getAuthenticated();
-      return { content: [{ type: "text", text: JSON.stringify(data, null, 2) }] };
-    }
-
     const repoResult = await handleRepositoryTools(name, params, octokit);
     if (repoResult) return repoResult;
 
@@ -71,6 +68,21 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
 
     const extraResult = await handleExtraTools(name, params, octokit);
     if (extraResult) return extraResult;
+
+    const userOrgResult = await handleUserOrgTools(name, params, octokit);
+    if (userOrgResult) return userOrgResult;
+
+    const keysHooksResult = await handleKeysHooksTools(name, params, octokit);
+    if (keysHooksResult) return keysHooksResult;
+
+    const enterpriseAdminResult = await handleEnterpriseAdminTools(name, params, octokit);
+    if (enterpriseAdminResult) return enterpriseAdminResult;
+
+    const devOpsResult = await handleDevOpsTools(name, params, octokit);
+    if (devOpsResult) return devOpsResult;
+
+    const miscResult = await handleMiscTools(name, params, octokit);
+    if (miscResult) return miscResult;
 
     throw new McpError(ErrorCode.MethodNotFound, `Tool not found: ${name}`);
   } catch (error: any) {
