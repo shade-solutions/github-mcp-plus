@@ -7,9 +7,9 @@
 
 An enhanced, **open-source developer friendly**, Node.js-based implementation of the official **GitHub Model Context Protocol (MCP)** Server.
 
-Unlike the official GitHub MCP server which requires a heavy Docker setup, this version runs purely on Node.js and can be easily executed using `npx`. It includes **50 elite tools** covering every major GitHub workflow — from PR reviews to CI status checking — making it the most comprehensive GitHub MCP server available.
+This version runs purely on Node.js and can be easily executed using `npx`. It includes **100+ elite tools** covering every major GitHub workflow — from enterprise administration to deployment management — making it the most comprehensive GitHub MCP server available.
 
-> **Ultimate Tool for GSoC & Open-Source Contributors.** Fork repos, sync with upstream, check CI status, review PRs, comment on issues, manage labels, search code, and star projects — all via your AI assistant.
+> **Ultimate Tool for GSoC, Enterprise & Open-Source Contributors.** Manage organizations, sync forks, check CI status, audit enterprise logs, handle SSH keys, and star projects — all via your AI assistant.
 
 ---
 
@@ -18,175 +18,60 @@ Unlike the official GitHub MCP server which requires a heavy Docker setup, this 
 | Feature              | Official (Docker)      | **github-mcp-plus**  |
 | -------------------- | ---------------------- | -------------------- |
 | Setup                | Docker required        | `npx` — zero install |
-| Runtime              | Go binary in container | Native Node.js       |
-| Tool Count           | ~40                    | **50 (Elite)**       |
-| CI Status (Checks)   | ❌                     | ✅                   |
+| Tool Count           | ~40                    | **101 (Elite)**      |
+| Enterprise Admin     | ❌                     | ✅                   |
+| DevOps (Deployments) | ❌                     | ✅                   |
+| Packages Management  | ❌                     | ✅                   |
+| SSH/GPG Key Mgmt     | ❌                     | ✅                   |
+| Org/Team Membership  | ❌                     | ✅                   |
 | Fork Synchronization | ❌                     | ✅                   |
-| PR Review Comments   | ❌                     | ✅                   |
-| Submit PR Reviews    | ❌                     | ✅                   |
-| PR Diffs             | ❌                     | ✅                   |
-| Commit Diffs         | ❌                     | ✅                   |
-| Fork Repos           | ❌                     | ✅                   |
-| Star/Unstar          | ❌                     | ✅                   |
 | Gist Management      | ❌                     | ✅                   |
 
 ---
 
-## 🛠️ The "Big 50" Toolset
+## 🛠️ The "Big 100" Elite Toolset
 
-### 📂 Repository Management (20 tools)
+### 📂 Repository & Context (26 tools)
+Fork repos, sync with upstream, manage branches, and explore file trees recursively.
+- `sync_fork`, `fork_repository`, `create_branch`, `get_repository_tree`, `search_code`, `star_repository`, etc.
 
-| Tool                        | Description                                  |
-| --------------------------- | -------------------------------------------- |
-| `get_repository`            | Get repo details (includes parents of forks) |
-| `sync_fork`                 | Merges upstream changes into your fork       |
-| `get_file_contents`         | Get file or directory contents               |
-| `create_or_update_file`     | Create or update a file                      |
-| `delete_file`               | Delete a file from a repo                    |
-| `search_repositories`       | Search for repositories                      |
-| `create_repository`         | Create a new repository                      |
-| `fork_repository`           | Fork a repo to your account                  |
-| `create_branch`             | Create a new branch                          |
-| `list_branches`             | List all branches                            |
-| `list_commits`              | List commits with filters                    |
-| `get_commit`                | Get commit details                           |
-| `get_repository_tree`       | Full recursive file tree                     |
-| `list_contributors`         | List repo contributors                       |
-| `search_code`               | Search code across GitHub                    |
-| `search_users`              | Search for GitHub users                      |
-| `star_repository`           | Star a repository                            |
-| `unstar_repository`         | Unstar a repository                          |
-| `list_stargazers`           | List users who starred a repo                |
-| `list_starred_repositories` | List starred repos                           |
+### 💬 Issues & Pull Requests (22 tools)
+Complete PR lifecycle management including diffs and inline review comments.
+- `add_pr_review_comment`, `submit_pr_review`, `get_pr_diff`, `merge_pull_request`, `list_pr_files`, etc.
 
-### 💬 Issues & Pull Requests (18 tools)
+### 🏢 User & Organization Management (13 tools)
+Manage profiles, track team memberships, and follow/unfollow users.
+- `list_orgs_for_authenticated_user`, `list_org_teams`, `list_org_members`, `follow_user`, `get_me`, etc.
 
-| Tool                    | Description                                |
-| ----------------------- | ------------------------------------------ |
-| `get_pull_request`      | Get PR details (includes mergeable status) |
-| `create_issue`          | Create a new issue                         |
-| `issue_read`            | Read an issue or PR                        |
-| `update_issue`          | Update issue title/body/state/labels       |
-| `list_issues`           | List issues with filters                   |
-| `search_issues`         | Search issues across GitHub                |
-| `add_issue_comment`     | Comment on an issue or PR                  |
-| `list_issue_comments`   | List comments on an issue                  |
-| `add_label`             | Add labels to an issue/PR                  |
-| `remove_label`          | Remove a label                             |
-| `create_pull_request`   | Open a new PR                              |
-| `update_pull_request`   | Update a PR                                |
-| `merge_pull_request`    | Merge a PR                                 |
-| `list_pull_requests`    | List PRs with filters                      |
-| `list_pr_files`         | List files changed in a PR                 |
-| `add_pr_review_comment` | Add inline review comment on PR            |
-| `get_pr_comments`       | List all review comments on a PR           |
-| `submit_pr_review`      | Approve, request changes, or comment on PR |
+### 🔐 Keys & Webhooks (11 tools)
+Handle security identities and automated integrations.
+- `add_public_ssh_key_for_authenticated_user`, `add_gpg_key_for_authenticated_user`, `create_repo_webhook`, etc.
 
-### ⚙️ GitHub Actions & CI (3 tools)
+### 🚀 DevOps & Infrastructure (5 tools)
+Monitor deployments, list packages, and manage codespaces.
+- `create_deployment`, `list_deployments`, `list_packages_for_org`, `list_codespaces_for_authenticated_user`, etc.
 
-| Tool                      | Description                                  |
-| ------------------------- | -------------------------------------------- |
-| `list_check_runs_for_ref` | **Check CI/CD status** for any branch/SHA/PR |
-| `actions_list`            | List all workflows in a repo                 |
-| `actions_run_trigger`     | Trigger a workflow via dispatch              |
+### ⚔️ Enterprise & Compliance (3 tools)
+Audit logs and enterprise-level management for large organizations.
+- `get_enterprise`, `list_enterprise_audit_log`.
 
-### 🔥 Extra Tools (8 tools)
-
-| Tool                 | Description                     |
-| -------------------- | ------------------------------- |
-| `get_pr_diff`        | Get the raw `.diff` of a PR     |
-| `get_commit_diff`    | Get the raw `.diff` of a commit |
-| `create_release`     | Create a GitHub release         |
-| `list_releases`      | List releases for a repo        |
-| `get_latest_release` | Get the latest release          |
-| `list_tags`          | List tags in a repo             |
-| `create_gist`        | Create a new gist               |
-| `list_gists`         | List your gists                 |
-
-### 🧑‍💻 Utilities (1 tool)
-
-| Tool     | Description                 |
-| -------- | --------------------------- |
-| `get_me` | Get authenticated user info |
+### ⚙️ GitHub Actions & Monitoring (8 tools)
+Trigger workflows and monitor site-wide notifications or code scanning alerts.
+- `actions_run_trigger`, `list_check_runs_for_ref`, `list_notifications_for_authenticated_user`, etc.
 
 ---
 
 ## 🔌 Installation Guides
 
-Simply configure your MCP client to use `npx`:
-
-```bash
-GITHUB_PERSONAL_ACCESS_TOKEN="your-github-token" npx -y github-mcp-plus@latest
-```
-
----
-
-## 👨‍💻 Contributing
-
-This project is built for the open-source community! Contributions are welcome:
-
-1. Fork the repo
-2. Create your feature branch (`git checkout -b feature/amazing-tool`)
-3. Commit your changes (`git commit -m 'Add amazing tool'`)
-4. Push to the branch (`git push origin feature/amazing-tool`)
-5. Open a Pull Request
-
----
-
-## 🏬 VS Code Marketplace Publishing
-
-This project is now a dual-purpose codebase! It functions as both a standard MCP server and a native VS Code extension.
-
-### 1. Build the Extension
-
-```bash
-npm install
-npm run package-extension
-```
-
-This generates a `github-mcp-plus-1.2.0.vsix` file.
-
-### 2. Manual Test
-
-Install the `.vsix` in VS Code via:
-
-- Command Palette (`Cmd+Shift+P`) → **Extensions: Install from VSIX...**
-- Select the generated file.
-
-### 3. Publish to Marketplace
-
-1. Get a [Personal Access Token (PAT)](https://aka.ms/vscode-publish-pat) from Azure DevOps.
-2. Login to `vsce`:
-   ```bash
-   npx vsce login sh20raj
-   ```
-3. Publish:
-   ```bash
-   npm run package-extension
-   npx vsce publish
-   ```
-
----
-
-## 🔌 Installation Guides for IDEs & Clients
-
-This server requires a GitHub Personal Access Token (`GITHUB_PERSONAL_ACCESS_TOKEN`).
-
-> **Note**: Standard `repo` scope is usually sufficient, though `workflow` scope is needed for triggering Actions.
-
-### 🖥️ Clause Desktop App
-
-Add the following to your `claude_desktop_config.json`:
-
-- **Mac**: `~/Library/Application Support/Claude/claude_desktop_config.json`
-- **Windows**: `%APPDATA%\Claude\claude_desktop_config.json`
+### 🧑‍🚀 Antigravity / Claude Desktop
+Add this to your `mcp_config.json`:
 
 ```json
 {
   "mcpServers": {
     "github": {
       "command": "npx",
-      "args": ["-y", "github-mcp-plus"],
+      "args": ["-y", "-q", "github-mcp-plus@latest"],
       "env": {
         "GITHUB_PERSONAL_ACCESS_TOKEN": "your-github-token"
       }
@@ -195,45 +80,10 @@ Add the following to your `claude_desktop_config.json`:
 }
 ```
 
-### 💻 Cursor
-
-Cursor allows you to configure MCP servers directly within the UI or via `.cursor/mcp.json`:
-
-1. Open Cursor Settings.
-2. Navigate to **Features** -> **MCP**.
-3. Add a new server:
-   - **Type**: `command`
-   - **Name**: `github`
-   - **Command**: `npx -y github-mcp-plus`
-4. Make sure your environment has `GITHUB_PERSONAL_ACCESS_TOKEN` exported, or define it in Cursor's environment settings.
-
-### 🏄‍♂️ Windsurf
-
-For Windsurf, you typically configure MCPs in your project or global `windsurf.config.json` or through the Windsurf UI:
-
-```json
-{
-  "mcp": {
-    "servers": [
-      {
-        "name": "github",
-        "command": "npx -y github-mcp-plus",
-        "env": {
-          "GITHUB_PERSONAL_ACCESS_TOKEN": "your-github-token"
-        }
-      }
-    ]
-  }
-}
-```
-
-### 🧑‍🚀 Antigravity / General CLI
-
-Since it's highly compatible with the official SDK, any conforming MCP client can run the tool:
-
-```bash
-GITHUB_PERSONAL_ACCESS_TOKEN="your-github-token" npx -y github-mcp-plus
-```
+### 💻 Cursor / Windsurf
+Add a new command-type server:
+- **Command**: `npx -y -q github-mcp-plus@latest`
+- **Env**: `GITHUB_PERSONAL_ACCESS_TOKEN`
 
 ---
 
@@ -241,14 +91,11 @@ GITHUB_PERSONAL_ACCESS_TOKEN="your-github-token" npx -y github-mcp-plus
 
 1. Clone the repository.
 2. Run `npm install`
-3. Build the server: `npm run build`
-4. The server can be run manually:
-
+3. Build & Run:
 ```bash
-GITHUB_PERSONAL_ACCESS_TOKEN="your-github-token" node build/index.js
+npm run build
+GITHUB_PERSONAL_ACCESS_TOKEN="your-token" node build/index.js
 ```
 
-
 ## 📄 License
-
 MIT
